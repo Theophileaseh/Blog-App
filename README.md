@@ -1,24 +1,66 @@
-# README
+# Blog App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+> A blogging application that enables users to create posts, like, and comment on them. This project was build u8sing Ruby on Rails and Postgresql. 
 
-Things you may want to cover:
 
-* Ruby version
+## Built With
 
-* System dependencies
+- Ruby on Rails
+- Ruby
+- Rubocop
 
-* Configuration
+## Getting Started
+To get a local copy up and running follow these simple example steps.
 
-* Database creation
+### Prerequisites
 
-* Database initialization
+``VS Code or other Code Editor``
 
-* How to run the test suite
+### Setup
 
-* Services (job queues, cache servers, search engines, etc.)
+``Install Postgres and Ruby installed``
 
-* Deployment instructions
+### Install
 
-* ...
+    git clone https://github.com/Theophileaseh/Blog-App.git
+
+### Usage
+
+``cd Blog-App``
+
+``bundle install``
+
+``Run "rails server or rails s" to start the application on local server``
+
+### Run tests
+
+``Run "rspec" in your terminal``
+
+
+## Authors
+
+👤 **Nwachan Theophile**
+
+- GitHub: [@Theophileash](https://github.com/Theophileaseh)
+- Twitter: [@NwachanT](https://twitter.com/NwachanT)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/nwachan-theophile)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- Hat tip to anyone whose code was used
+- Inspiration
+- etc
+
+## 📝 License
+
+This project is [MIT](./MIT.md) licensed.
