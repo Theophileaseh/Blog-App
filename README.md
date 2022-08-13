@@ -1,56 +1,49 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
+# Blog App
 
-# Project Name
-
-> Description the project.
+> A blogging application that enables users to create posts, like, and comment on them. This project was build u8sing Ruby on Rails and Postgresql. 
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
-
-## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
-
+- Ruby on Rails
+- Ruby
+- Rubocop
 
 ## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
+``VS Code or other Code Editor``
+
 ### Setup
+
+``Install Postgres and Ruby applications``
 
 ### Install
 
+    git clone https://github.com/Theophileaseh/Blog-App.git
+
 ### Usage
+
+``cd Blog-App``
+
+``bundle install``
+
+``Run "rails server or rails s" to start the application on local server``
 
 ### Run tests
 
-### Deployment
-
+``Run "rspec" in your terminal``
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Nwachan Theophile**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@Theophileash](https://github.com/Theophileaseh)
+- Twitter: [@NwachanT](https://twitter.com/NwachanT)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/nwachan-theophile)
 
 ## 🤝 Contributing
 
@@ -70,6 +63,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./LICENSE) licensed.
-
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
+This project is [MIT](./MIT.md) licensed.
