@@ -9,6 +9,7 @@ class Post < ApplicationRecord
     greater_than_or_equal_to: 0
   }
 
+
   def most_recent_five_comments
     comments.includes(:user).order(created_at: :desc).limit(5)
   end
