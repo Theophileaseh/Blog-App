@@ -10,27 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_11_173611) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_16_100450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "posts_id", null: false
+    t.bigint "post_id", null: false
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["posts_id"], name: "index_comments_on_posts_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.bigint "posts_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["posts_id"], name: "index_likes_on_posts_id"
-    t.index ["users_id"], name: "index_likes_on_users_id"
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_11_173611) do
     t.string "title"
     t.text "text"
     t.integer "comments_counter"
-    t.integer "likes_counter"
+    t.integer "posts_counter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -51,12 +51,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_11_173611) do
     t.integer "posts_counter"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["photo"], name: "index_users_on_photo", unique: true
   end
 
-  add_foreign_key "comments", "posts", column: "posts_id"
+  add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "likes", "posts", column: "posts_id"
-  add_foreign_key "likes", "users", column: "users_id"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
 end
