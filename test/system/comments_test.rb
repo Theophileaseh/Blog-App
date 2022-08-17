@@ -1,7 +1,7 @@
 require 'application_system_test_case'
 
 class CommentsTest < ApplicationSystemTestCase
-  setup do
+  before do
     @comment = comments(:one)
   end
 

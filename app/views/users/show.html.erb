@@ -2,9 +2,15 @@
 
 <%= render @user %>
 
-<div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
+<div class="user-bio">
+<p>Bio</p>
+<%= @user.bio %>
 </div>
+
+<div class="user-posts">
+
+<p>This is a list of posts for a selected user</p>
+<p></p>
+</div>
+
+

@@ -1,7 +1,7 @@
 require 'application_system_test_case'
 
 class LikesTest < ApplicationSystemTestCase
-  setup do
+  before do
     @like = likes(:one)
   end
 
