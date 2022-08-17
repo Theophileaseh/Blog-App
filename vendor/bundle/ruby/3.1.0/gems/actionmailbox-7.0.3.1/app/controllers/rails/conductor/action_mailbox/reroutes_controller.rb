@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Rails
   # Rerouting will run routing and processing on an email that has already been, or attempted to be, processed.
   class Conductor::ActionMailbox::ReroutesController < Rails::Conductor::BaseController
@@ -11,9 +9,10 @@ module Rails
     end
 
     private
-      def reroute(inbound_email)
-        inbound_email.pending!
-        inbound_email.route_later
-      end
+
+    def reroute(inbound_email)
+      inbound_email.pending!
+      inbound_email.route_later
+    end
   end
 end

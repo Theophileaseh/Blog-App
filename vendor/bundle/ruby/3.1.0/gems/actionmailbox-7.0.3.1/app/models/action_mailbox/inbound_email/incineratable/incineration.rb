@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ActionMailbox
   # Command class for carrying out the actual incineration of the +InboundMail+ that's been scheduled
   # for removal. Before the incineration – which really is just a call to +#destroy!+ – is run, we verify
@@ -15,12 +13,13 @@ module ActionMailbox
     end
 
     private
-      def due?
-        @inbound_email.updated_at < ActionMailbox.incinerate_after.ago.end_of_day
-      end
 
-      def processed?
-        @inbound_email.processed?
-      end
+    def due?
+      @inbound_email.updated_at < ActionMailbox.incinerate_after.ago.end_of_day
+    end
+
+    def processed?
+      @inbound_email.processed?
+    end
   end
 end

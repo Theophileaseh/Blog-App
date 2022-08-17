@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ActionMailbox
   # Encapsulates a route, which can then be matched against an inbound_email and provide a lookup of the matching
   # mailbox class. See examples for the different route addresses and how to use them in the ActionMailbox::Base
@@ -8,7 +6,8 @@ module ActionMailbox
     attr_reader :address, :mailbox_name
 
     def initialize(address, to:)
-      @address, @mailbox_name = address, to
+      @address = address
+      @mailbox_name = to
 
       ensure_valid_address
     end
@@ -33,10 +32,11 @@ module ActionMailbox
     end
 
     private
-      def ensure_valid_address
-        unless [ Symbol, String, Regexp, Proc ].any? { |klass| address.is_a?(klass) } || address.respond_to?(:match?)
-          raise ArgumentError, "Expected a Symbol, String, Regexp, Proc, or matchable, got #{address.inspect}"
-        end
+
+    def ensure_valid_address
+      unless [Symbol, String, Regexp, Proc].any? { |klass| address.is_a?(klass) } || address.respond_to?(:match?)
+        raise ArgumentError, "Expected a Symbol, String, Regexp, Proc, or matchable, got #{address.inspect}"
       end
+    end
   end
 end

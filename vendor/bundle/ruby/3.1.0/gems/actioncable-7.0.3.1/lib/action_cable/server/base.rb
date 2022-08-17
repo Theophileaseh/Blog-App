@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require "monitor"
+require 'monitor'
 
 module ActionCable
   module Server
@@ -14,12 +12,10 @@ module ActionCable
 
       cattr_accessor :config, instance_accessor: false, default: ActionCable::Server::Configuration.new
 
-      attr_reader :config
+      attr_reader :config, :mutex
 
-      def self.logger; config.logger; end
+      def self.logger() = config.logger
       delegate :logger, to: :config
-
-      attr_reader :mutex
 
       def initialize(config: self.class.config)
         @config = config
@@ -45,11 +41,11 @@ module ActionCable
 
         @mutex.synchronize do
           # Shutdown the worker pool
-          @worker_pool.halt if @worker_pool
+          @worker_pool&.halt
           @worker_pool = nil
 
           # Shutdown the pub/sub adapter
-          @pubsub.shutdown if @pubsub
+          @pubsub&.shutdown
           @pubsub = nil
         end
       end
@@ -75,7 +71,9 @@ module ActionCable
       # the database connection pool and block while they wait for other workers to release their connections. Use a smaller worker pool or a larger
       # database connection pool instead.
       def worker_pool
-        @worker_pool || @mutex.synchronize { @worker_pool ||= ActionCable::Server::Worker.new(max_size: config.worker_pool_size) }
+        @worker_pool || @mutex.synchronize do
+          @worker_pool ||= ActionCable::Server::Worker.new(max_size: config.worker_pool_size)
+        end
       end
 
       # Adapter used for all streams/broadcasting.

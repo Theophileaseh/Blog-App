@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Mail
   class Address
     def self.wrap(address)

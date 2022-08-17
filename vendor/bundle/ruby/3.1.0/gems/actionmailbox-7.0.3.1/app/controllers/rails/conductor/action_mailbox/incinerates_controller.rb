@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Rails
   # Incinerating will destroy an email that is due and has already been processed.
   class Conductor::ActionMailbox::IncineratesController < Rails::Conductor::BaseController

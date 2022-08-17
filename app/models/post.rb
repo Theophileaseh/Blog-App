@@ -17,5 +17,4 @@ class Post < ApplicationRecord
   def update_posts_count
     user.update(posts_counter: user.posts.size)
   end
-  
 end

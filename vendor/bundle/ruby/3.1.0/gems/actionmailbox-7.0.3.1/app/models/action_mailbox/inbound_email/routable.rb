@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # A newly received +InboundEmail+ will not be routed synchronously as part of ingress controller's receival.
 # Instead, the routing will be done asynchronously, using a +RoutingJob+, to ensure maximum parallel capacity.
 #

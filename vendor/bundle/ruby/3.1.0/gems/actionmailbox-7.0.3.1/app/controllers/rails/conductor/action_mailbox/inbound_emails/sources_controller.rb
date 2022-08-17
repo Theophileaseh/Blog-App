@@ -1,9 +1,6 @@
-# frozen_string_literal: true
-
 module Rails
   class Conductor::ActionMailbox::InboundEmails::SourcesController < Rails::Conductor::BaseController
-    def new
-    end
+    def new; end
 
     def create
       inbound_email = ActionMailbox::InboundEmail.create_and_extract_message_id! params[:source]

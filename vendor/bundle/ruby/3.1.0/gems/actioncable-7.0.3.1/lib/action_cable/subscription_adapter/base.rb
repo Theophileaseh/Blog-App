@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+require 'English'
 module ActionCable
   module SubscriptionAdapter
     class Base
@@ -27,7 +26,7 @@ module ActionCable
       end
 
       def identifier
-        @server.config.cable[:id] ||= "ActionCable-PID-#{$$}"
+        @server.config.cable[:id] ||= "ActionCable-PID-#{$PROCESS_ID}"
       end
     end
   end

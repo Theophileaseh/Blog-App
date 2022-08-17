@@ -10,7 +10,7 @@ require 'rubygems'
 
 Gem.use_gemdeps
 
-version = ">= 0.a"
+version = '>= 0.a'
 
 str = ARGV.first
 if str
@@ -22,8 +22,8 @@ if str
 end
 
 if Gem.respond_to?(:activate_bin_path)
-load Gem.activate_bin_path('rspec-core', 'rspec', version)
+  load Gem.activate_bin_path('rspec-core', 'rspec', version)
 else
-gem "rspec-core", version
-load Gem.bin_path("rspec-core", "rspec", version)
+  gem 'rspec-core', version
+  load Gem.bin_path('rspec-core', 'rspec', version)
 end

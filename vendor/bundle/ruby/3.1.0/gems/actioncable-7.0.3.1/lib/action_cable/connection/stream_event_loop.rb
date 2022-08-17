@@ -1,8 +1,4 @@
-# frozen_string_literal: true
-
-require "nio"
-require "thread"
-
+require 'nio'
 module ActionCable
   module Connection
     class StreamEventLoop
@@ -15,8 +11,8 @@ module ActionCable
         @spawn_mutex = Mutex.new
       end
 
-      def timer(interval, &block)
-        Concurrent::TimerTask.new(execution_interval: interval, &block).tap(&:execute)
+      def timer(interval, &)
+        Concurrent::TimerTask.new(execution_interval: interval, &).tap(&:execute)
       end
 
       def post(task = nil, &block)
@@ -34,7 +30,7 @@ module ActionCable
         wakeup
       end
 
-      def detach(io, stream)
+      def detach(io, _stream)
         @todo << lambda do
           @nio.deregister io
           @map.delete io
@@ -58,79 +54,76 @@ module ActionCable
       end
 
       private
-        def spawn
-          return if @thread && @thread.status
 
-          @spawn_mutex.synchronize do
-            return if @thread && @thread.status
+      def spawn
+        return if @thread&.status
 
-            @nio ||= NIO::Selector.new
+        @spawn_mutex.synchronize do
+          return if @thread&.status
 
-            @executor ||= Concurrent::ThreadPoolExecutor.new(
-              min_threads: 1,
-              max_threads: 10,
-              max_queue: 0,
-            )
+          @nio ||= NIO::Selector.new
 
-            @thread = Thread.new { run }
+          @executor ||= Concurrent::ThreadPoolExecutor.new(
+            min_threads: 1,
+            max_threads: 10,
+            max_queue: 0
+          )
 
-            return true
+          @thread = Thread.new { run }
+
+          return true
+        end
+      end
+
+      def wakeup
+        spawn || @nio.wakeup
+      end
+
+      def run
+        loop do
+          if @stopping
+            @nio.close
+            break
           end
-        end
 
-        def wakeup
-          spawn || @nio.wakeup
-        end
+          @todo.pop(true).call until @todo.empty?
 
-        def run
-          loop do
-            if @stopping
-              @nio.close
-              break
-            end
+          next unless monitors = @nio.select
 
-            until @todo.empty?
-              @todo.pop(true).call
-            end
+          monitors.each do |monitor|
+            io = monitor.io
+            stream = monitor.value
 
-            next unless monitors = @nio.select
+            begin
+              if monitor.writable?
+                monitor.interests = :r if stream.flush_write_buffer
+                next unless monitor.readable?
+              end
 
-            monitors.each do |monitor|
-              io = monitor.io
-              stream = monitor.value
-
+              incoming = io.read_nonblock(4096, exception: false)
+              case incoming
+              when :wait_readable
+                next
+              when nil
+                stream.close
+              else
+                stream.receive incoming
+              end
+            rescue StandardError
+              # We expect one of EOFError or Errno::ECONNRESET in
+              # normal operation (when the client goes away). But if
+              # anything else goes wrong, this is still the best way
+              # to handle it.
               begin
-                if monitor.writable?
-                  if stream.flush_write_buffer
-                    monitor.interests = :r
-                  end
-                  next unless monitor.readable?
-                end
-
-                incoming = io.read_nonblock(4096, exception: false)
-                case incoming
-                when :wait_readable
-                  next
-                when nil
-                  stream.close
-                else
-                  stream.receive incoming
-                end
-              rescue
-                # We expect one of EOFError or Errno::ECONNRESET in
-                # normal operation (when the client goes away). But if
-                # anything else goes wrong, this is still the best way
-                # to handle it.
-                begin
-                  stream.close
-                rescue
-                  @nio.deregister io
-                  @map.delete io
-                end
+                stream.close
+              rescue StandardError
+                @nio.deregister io
+                @map.delete io
               end
             end
           end
         end
+      end
     end
   end
 end

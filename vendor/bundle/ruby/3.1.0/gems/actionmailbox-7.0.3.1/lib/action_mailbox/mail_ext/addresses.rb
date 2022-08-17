@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Mail
   class Message
     def from_address
