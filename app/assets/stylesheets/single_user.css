@@ -5,3 +5,16 @@
   align-items: center;
   gap: 60px;
 }
+
+.single-user-comment {
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+}
+
+.s-image {
+  width: 100px;
+  border-radius: 50%;
+  height: 100px;
+}
