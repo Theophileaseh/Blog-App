@@ -1,0 +1,24 @@
+<div class="single-post-info">
+<div class="single-user-comment">
+
+<%= render @user %>
+
+<div class="user-bio">
+<p>Bio</p>
+<%= @user.bio %>
+</div>
+
+<div class="user-posts">
+<% @recent_posts.each do |post| %>
+  <%= render post %>
+    <% end %>
+  
+</div>
+
+<div class="show-all-post-div">
+
+  <%= link_to "show all posts", "/users/#{@user.id}/posts", class: "show-all-posts-link"%>
+</div>
+</div>
+
+

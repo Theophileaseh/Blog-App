@@ -1,0 +1,39 @@
+  <div id="<%= dom_id @post %>">
+  <div class="single-post-info">
+  <div class="post-title-comments-likes">
+  <div class="post-title-user">
+   <p class="post-title"><%= @post.title %> by</p>
+   <p class="post-author"><%= @post.user.name %></p>
+  </div>
+  <div class="post-comments-likes">
+  <p>Comments: <%= @post.comments_counter %></p>
+  <p>Likes: <%= @post.posts_counter %></p>
+   
+  </div>
+  </div>
+  <div class="post-content">
+  <p><%= @post.text %>
+  </div>
+  <%= @post.comments.each_with_index do |comment, index| %>
+  <div class="post-user-comments">
+    <p class="commenter-name">
+    <%= comment.user.name %>:
+  </p>
+
+
+  <p>
+    <%= comment.text %>
+  </p>
+
+  </div>
+  <% end %>
+
+    </div>
+    </div>
+  
+  </div>
+  
+  
+  
+
+
