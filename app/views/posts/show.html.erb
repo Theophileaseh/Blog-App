@@ -14,7 +14,7 @@
   <div class="post-content">
   <p><%= @post.text %>
   </div>
-  <%= @post.comments.each_with_index do |comment, index| %>
+  <%= @post.most_recent_five_comments.each_with_index do |comment, index| %>
   <div class="post-user-comments">
     <p class="commenter-name">
     <%= comment.user.name %>:

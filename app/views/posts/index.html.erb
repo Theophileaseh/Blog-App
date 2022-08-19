@@ -9,7 +9,7 @@
     
 
       <ul>
-        <% post.comments.each do |comment| %>
+        <% post.most_recent_five_comments.each do |comment| %>
           <%= render comment %>
 
           <% end %>
