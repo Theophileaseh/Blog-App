@@ -1,4 +1,5 @@
-<p style="color: green"><%= notice %></p>
+<div class="single-post-info">
+<div class="single-user-comment">
 
 <%= render @user %>
 
@@ -8,9 +9,16 @@
 </div>
 
 <div class="user-posts">
+<% @recent_posts.each do |post| %>
+  <%= render post %>
+    <% end %>
+  
+</div>
 
-<p>This is a list of posts for a selected user</p>
-<p></p>
+<div class="show-all-post-div">
+
+  <%= link_to "show all posts", "/users/#{@user.id}/posts", class: "show-all-posts-link"%>
+</div>
 </div>
 
 

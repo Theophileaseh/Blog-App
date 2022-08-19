@@ -1,19 +1,22 @@
-<div id="<%= dom_id user %>">
-<div class="single-user">
-<div class="single-image">
-<img src=<%= user.photo %> alt="#{user.name}" class="s-image">
-</div>
+<div class="single-user-profile" >
+  <div id="<%= dom_id user %>">
+    <div class="single-user">
+      <div class="single-image">
+        <img src=<%= user.photo %> alt="#{user.name}" class="s-image">
+      </div>
 
-<div class="user-info">
-<p>
-    <%= user.name %>
-  </p>
+      <div class="user-info">
+        <p>
+          <%= user.name %>
+        </p>
 
-  <p>
-    <strong>Number of posts:</strong>
+        <p>
+       <strong>Number of posts:</strong>
     <%= user.posts_counter %>
   </p>
   </div>
 
+</div>
+</div>
 </div>
 </div>
