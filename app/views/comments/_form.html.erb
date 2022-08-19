@@ -1,32 +1,9 @@
-<%= form_with(model: comment) do |form| %>
-  <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with model: @comment, local: true do |f| %>
   <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <%= f.label :text %><br>
+  <%= f.text_area :text, required: true %>
   </div>
+  
+  <%= f.submit 'Add Comment' %>
 
-  <div>
-    <%= form.label :post_id, style: "display: block" %>
-    <%= form.text_field :post_id %>
-  </div>
-
-  <div>
-    <%= form.label :text, style: "display: block" %>
-    <%= form.text_area :text %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>
