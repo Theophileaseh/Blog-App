@@ -1,7 +1,5 @@
-<%= form_with model: @post, local: true do |f| %>
+<%= form_with model: @post, url: user_posts_path, local: true do |f| %>
 
-  <%= f.hidden_field :comments_counter, value: 0 %>
-  <%= f.hidden_field :likes_counter, value: 0 %>
   
   <div>
   <%= f.label :title %><br>
@@ -13,6 +11,8 @@
   <%= f.text_area :text, required: true  %>
   </div>
 
-  <%= f.submit 'Add Post' %>
+  <%= f.submit 'Add Post', class: "save-post-btn" %>
+
+
 
 <% end %>

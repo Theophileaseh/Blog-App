@@ -11,7 +11,10 @@ class LikesController < ApplicationController
 
   # GET /likes/new
   def new
-    @like = Like.new
+    like = Like.new
+    respond_to do |format|
+      format.html { render :new, locals: { like: } }
+    end
   end
 
   # GET /likes/1/edit
@@ -19,15 +22,19 @@ class LikesController < ApplicationController
 
   # POST /likes or /likes.json
   def create
-    @like = Like.new(like_params)
-
+    user = User.find(params[:user_id])
+    post = Post.find(params[:post_id])
+    like = Like.new(user:, post:)
     respond_to do |format|
-      if @like.save
-        format.html { redirect_to like_url(@like), notice: 'Like was successfully created.' }
-        format.json { render :show, status: :created, location: @like }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
+      format.html do
+        if like.save
+          like.update_likes_count
+          flash[:notice] = 'Liked'
+          redirect_to "/users/#{user.id}/posts/#{post.id}"
+        else
+          flash.now[:error] = 'Error: Like could not be saved'
+          render :new, locals: { like: }
+        end
       end
     end
   end

@@ -11,7 +11,10 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    @comment = Comment.new
+    comment = Comment.new
+    respond_to do |format|
+      format.html { render :new, locals: { comment: } }
+    end
   end
 
   # GET /comments/1/edit
@@ -19,15 +22,18 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @comment = Comment.new(comment_params)
-
+    post = Post.find(params[:post_id])
+    comment = Comment.new(text: params[:text], user: current_user, post:)
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to comment_url(@comment), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      format.html do
+        if comment.save
+          comment.update_comments_count
+          flash[:success] = 'New comment added'
+          redirect_to "/users/#{params[:user_id]}/posts/#{post.id}"
+        else
+          flash.now[:error] = 'Error: Comment could not be saved'
+          render :new, locals: { comment: }
+        end
       end
     end
   end

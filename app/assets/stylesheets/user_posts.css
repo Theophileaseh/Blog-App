@@ -95,3 +95,45 @@
   /* margin: 0 auto; */
   padding: 5px;
 }
+
+.add-comment {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  width: 73%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-comment-input {
+  width: 420px;
+  height: 100px;
+  border-radius: 3px;
+  border-color: #6060cf;
+}
+
+.new-post {
+  width: 73%;
+  margin: 0 auto;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-post input {
+  width: 420px;
+  height: 30px;
+  border-radius: 3px;
+}
+
+.new-post textarea {
+  height: 120px;
+  width: 420px;
+}
+
+.save-post-btn {
+  width: max-content !important;
+  margin-top: 20px;
+}
