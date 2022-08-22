@@ -14,7 +14,6 @@ class Post < ApplicationRecord
     comments.includes(:user).order(created_at: :desc).limit(5)
   end
 
-
   def update_posts_count
     user.update(posts_counter: user.posts.size)
   end

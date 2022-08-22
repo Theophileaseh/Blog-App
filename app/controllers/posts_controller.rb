@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @post = Post.includes(:user, comments: [:user]).find(params[:id])
   end
 
-  def create
+  def create # rubocop:disable Metrics/MethodLength
     post = params[:post]
     user = User.find(params[:user_id])
     post = Post.new(post.permit(:title, :text))
@@ -21,23 +21,23 @@ class PostsController < ApplicationController
         if post.save
           post.update_posts_count
           # success message
-          flash[:success] = "Post saved successfully"
+          flash[:success] = 'Post saved successfully'
           # redirect to index
           redirect_to "/users/#{user.id}/posts"
         else
           # error message
-          flash.now[:error] = "Error: Post could not be saved"
+          flash.now[:error] = 'Error: Post could not be saved'
           # render new
-          render :new, locals: { post: post }
+          render :new, locals: { post: }
         end
       end
-  end
+    end
 
-  def new
-    post = Post.new
-    respond_to do |format|
-      format.html { render :new, locals: { post: post } }
+    def new # rubocop:disable Lint/NestedMethodDefinition
+      post = Post.new
+      respond_to do |format|
+        format.html { render :new, locals: { post: } }
+      end
     end
   end
-end
 end
