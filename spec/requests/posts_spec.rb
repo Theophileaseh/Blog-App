@@ -73,7 +73,7 @@ RSpec.describe '/posts', type: :request do
       it 'does not create a new Post' do
         expect do
           post posts_url, params: { post: invalid_attributes }
-        end.not_to change(Post, :count)
+        end.to change(Post, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

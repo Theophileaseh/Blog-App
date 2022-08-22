@@ -7,7 +7,7 @@ RSpec.describe 'posts/new', type: :view do
                     title: 'MyString',
                     text: 'MyText',
                     comments_counter: 1,
-                    posts_counter: 1
+                    likes_counter: 1
                   ))
   end
 
@@ -23,7 +23,7 @@ RSpec.describe 'posts/new', type: :view do
 
       assert_select 'input[name=?]', 'post[comments_counter]'
 
-      assert_select 'input[name=?]', 'post[posts_counter]'
+      assert_select 'input[name=?]', 'post[likes_counter]'
     end
   end
 end

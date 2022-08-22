@@ -7,7 +7,7 @@ RSpec.describe 'posts/show', type: :view do
                             title: 'Title',
                             text: 'MyText',
                             comments_counter: 2,
-                            posts_counter: 3
+                            likes_counter: 3
                           ))
   end
 

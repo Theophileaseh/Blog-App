@@ -73,7 +73,7 @@ RSpec.describe '/comments', type: :request do
       it 'does not create a new Comment' do
         expect do
           post comments_url, params: { comment: invalid_attributes }
-        end.not_to change(Comment, :count)
+        end.to change(Comment, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do

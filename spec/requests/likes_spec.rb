@@ -73,7 +73,7 @@ RSpec.describe '/likes', type: :request do
       it 'does not create a new Like' do
         expect do
           post likes_url, params: { like: invalid_attributes }
-        end.not_to change(Like, :count)
+        end.to change(Like, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
