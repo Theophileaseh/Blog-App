@@ -3,7 +3,7 @@
 > A blogging application that enables users to create posts, like, and comment on them. This project was build u8sing Ruby on Rails and Postgresql. 
 
 ## Screenshot
-| Homepage |   Continent Page |
+| Users Page |   Users and posts page |
 | ---------- | ----------- |
  | ![usersPage](img/1.png) | ![UsersPostsPage](img/2.png) |
 </p>
