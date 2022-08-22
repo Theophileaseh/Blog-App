@@ -1,3 +1,5 @@
+<div class="new-post">
+
 <%= form_with model: @comment,  url: user_post_comments_path(post_id: params[:id]), local: true do |f| %>
   <div>
   <%= f.label :Comment %><br>
@@ -7,3 +9,6 @@
   <%= f.submit 'Add Comment' %>
 
 <% end %>
+
+
+</div>

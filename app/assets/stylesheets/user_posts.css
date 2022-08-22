@@ -75,11 +75,11 @@
   padding: 20px;
 }
 
-.post-container {
+/* .post-container {
   width: 72.8%;
   margin: 0 auto;
   background: #fff;
-}
+} */
 
 .show-all-post-div {
   text-align: center;
@@ -117,9 +117,17 @@
   width: 73%;
   margin: 0 auto;
   background: #fff;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.new-post .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: initial;
+
 }
 
 .new-post input {
