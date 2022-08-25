@@ -6,13 +6,13 @@
    <p class="post-author"><%= @post.user.name %></p>
   </div>
   <div class="post-comments-likes">
-  <p>Comments: <%= @post.comments_counter %></p>
-  <p>Likes: <%= @post.likes_counter %></p>
+  <p class= "number-of-comments">Comments: <%= @post.comments_counter %></p>
+  <p , class= "number-of-likes">Likes: <%= @post.likes_counter %></p>
    
   </div>
   </div>
   <div class="post-content">
-  <p><%= @post.text %></p>
+  <p class="post-body"><%= @post.text %></p>
   <p><%= render partial: "likes/form", locals: { like: Like.new, user: @post.user} %></p>
   </div>
   <%= @post.most_recent_five_comments.each_with_index do |comment, index| %>
@@ -22,7 +22,7 @@
   </p>
 
 
-  <p>
+  <p class="user-comment">
     <%= comment.text %>
   </p>
 
