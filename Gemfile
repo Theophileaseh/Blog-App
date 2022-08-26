@@ -41,6 +41,8 @@ gem 'tzinfo-data'
 
 gem 'devise'
 
+gem 'cancancan'
+
 gem 'mailcatcher'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
