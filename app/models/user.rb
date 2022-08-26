@@ -8,11 +8,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-#   enum role: [:user, :admin]   after_initialize :set_default_role, 
-#   :if => :new_record?    
-# def set_default_role
-#     self.role ||= :user   
-# end
+  #   enum role: [:user, :admin]   after_initialize :set_default_role,
+  #   :if => :new_record?
+  # def set_default_role
+  #     self.role ||= :user
+  # end
 
   validates :posts_counter, numericality: {
     only_integer: false,
