@@ -13,6 +13,17 @@
   </head>
 
   <body>
+    <div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+    <div class="list">
+        <div class="sign_out">
+          <% if user_signed_in? %>
+            <div><p>Welcome <%= current_user.name %></p> <p> <%= link_to "edit password", "/users/password/edit" %></div>
+            <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class:"btn_signout_from" %>
+          <% end %>
+        </div>
     <%= yield %>
   </body>
 </html>
