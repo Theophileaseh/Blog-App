@@ -253,6 +253,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sinatra (2.2.2)
       mustermann (~> 2.0)
       rack (~> 2.2)
@@ -330,6 +333,7 @@ DEPENDENCIES
   rspec-rails (>= 3.9.0)
   rubocop (>= 1.0, < 2.0)
   selenium-webdriver
+  simple_form
   sprockets-rails
   stimulus-rails
   turbo-rails
