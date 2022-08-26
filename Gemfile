@@ -41,7 +41,12 @@ gem 'tzinfo-data'
 
 gem 'devise'
 
+gem 'mailcatcher'
+
 gem 'rubocop', '>= 1.0', '< 2.0'
+
+gem "font-awesome-sass", "~> 6.1.2"
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
