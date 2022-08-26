@@ -13,6 +13,32 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="app-container">
+    <div class="application-header">
+
+
+  <div class="application-user-info">
+        <% if user_signed_in? %>
+        <div class="user-edit-password">
+          <div><p>Welcome <span><%= current_user.name %></span></p> </div>
+          <div><p> <%= link_to "edit password", "/users/password/edit" %></p> </div>
+        </div>
+        <div>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "logout-btn" %>
+        </div>
+        <% end %>
+      </div>
+      </div>
+
+      <div class="notification-area">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+    </div>
+
+ 
+      <div class="application-main">
+  <%= yield %>
+  </div>
+    </div>
   </body>
 </html>
