@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
+    authorize! :manage, comment
     comment = Comment.new
     respond_to do |format|
       format.html { render :new, locals: { comment: } }
@@ -22,6 +23,7 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
+    authorize! :manage, comment
     post = Post.find(params[:post_id])
     comment = Comment.new(text: params[:text], user: current_user, post:)
     respond_to do |format|

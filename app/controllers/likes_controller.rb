@@ -11,6 +11,7 @@ class LikesController < ApplicationController
 
   # GET /likes/new
   def new
+    authorize! :manage, like
     like = Like.new
     respond_to do |format|
       format.html { render :new, locals: { like: } }
@@ -22,6 +23,7 @@ class LikesController < ApplicationController
 
   # POST /likes or /likes.json
   def create
+    authorize! :manage, like
     user = User.find(params[:user_id])
     post = Post.find(params[:post_id])
     like = Like.new(user:, post:)

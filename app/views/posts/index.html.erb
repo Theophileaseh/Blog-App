@@ -2,7 +2,9 @@
 <div class="single-post-info">
 <%= render partial: "users/user" , locals: { user: @user } %>
 
-<%= link_to "Add New Post", new_user_post_path %>
+<% if can? :manage, @post %>
+  <%= link_to "Add New Post", new_user_post_path %>
+<% end %>
  
 <div class="post-container">
   <% @posts.includes(:user).each do |post, index| %>
