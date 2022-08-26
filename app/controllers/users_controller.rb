@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   # GET /users or /users.json
   def index
     @users = User.all
@@ -10,5 +9,4 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @recent_posts = @user.most_recent_three_posts
   end
-
 end
