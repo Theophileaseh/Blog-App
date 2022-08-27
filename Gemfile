@@ -43,7 +43,7 @@ gem 'devise'
 
 gem 'cancancan'
 
-gem 'mailcatcher'
+gem 'rack-utf8_sanitizer'
 
 gem 'simple_form'
 
