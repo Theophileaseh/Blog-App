@@ -47,6 +47,8 @@ gem 'rack-utf8_sanitizer'
 
 gem 'simple_form'
 
+gem 'mailcatcher'
+
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'font-awesome-sass', '~> 6.1.2'
