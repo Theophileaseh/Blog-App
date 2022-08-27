@@ -1,3 +1,4 @@
+<% if can? :read, @post %>
 <%= link_to "/users/#{post.user.id}/posts/#{post.id}", class: "single-post-link" do %>
 <div id="<%= dom_id post %>">
 <div class="user-single-post">
@@ -19,6 +20,7 @@
 
 </div>
 
+<% end %>
 <% end %>
 
 
