@@ -23,6 +23,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :role %><br />
+    <%= f.input :role, :as => :radio, :collection =>  [ 'admin', 'user', 'guest' ] %>
+  </div>
+  
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
