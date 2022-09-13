@@ -15,7 +15,9 @@
   <body>
     <div class="app-container">
     <div class="application-header">
-
+    <div class="application-main-info">
+      <img src="" alt="Mr. Blogger">
+    </div>
 
   <div class="application-user-info">
         <% if user_signed_in? %>
@@ -24,8 +26,10 @@
           <div><p> <%= link_to "edit password", "/users/password/edit" %></p> </div>
         </div>
         <div>
-        <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "logout-btn" %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-login" %>
         </div>
+          <% else %>
+          <div><%= button_to "Log in", new_user_session_path, class: "nav-login" %> </div>
         <% end %>
       </div>
       </div>
