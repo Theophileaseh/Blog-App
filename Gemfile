@@ -49,6 +49,10 @@ gem 'simple_form'
 
 gem 'mailcatcher'
 
+gem 'devise-jwt'
+
+gem 'rack-cors'
+
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'font-awesome-sass', '~> 6.1.2'
@@ -67,6 +71,8 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   gem 'rspec-rails', '>= 3.9.0'
+
+  gem 'dotenv-rails'
 end
 
 group :development do

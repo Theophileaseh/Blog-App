@@ -22,3 +22,60 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.app-container {
+  width: 70%;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.application-header {
+  background: #6767d0;
+  display: flex;
+  height: 80px;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-area {
+  background: #fff;
+}
+
+.application-user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+}
+
+.user-edit-password {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.user-edit-password span {
+  color: #ffcf00;
+}
+
+.user-edit-password a {
+  color: #fff;
+}
+
+.logout-btn {
+  border-radius: 20px;
+  border: 1px solid #fff;
+  padding: 5px 10px;
+  color: #6767d0;
+}
+
+.application-user-login {
+  width: 50%;
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  // box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  border-radius: 5px;
+}
