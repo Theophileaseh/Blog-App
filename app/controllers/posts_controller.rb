@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   end
 
   def create # rubocop:disable Metrics/MethodLength
-    authorize! :read, post
+    # authorize! :manage, post
     post = params[:post]
     user = User.find(params[:user_id])
     post = Post.new(post.permit(:title, :text))

@@ -9,7 +9,7 @@ class Ability
     can :read, Post, user: user
     can :manage, Post, user: user # only post owners can manage posts
     can :manage, Comment, user: user # only post owners can manage posts
-    return unless user.admin? # additional permissions for administrators
+    # return unless user.admin? # additional permissions for administrators
 
     can :manage, :all
   end
