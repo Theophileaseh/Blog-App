@@ -23,19 +23,19 @@ class LikesController < ApplicationController
 
   # POST /likes or /likes.json
   def create
-    authorize! :manage, like
+    authorize! :manage, @like
     user = User.find(params[:user_id])
     post = Post.find(params[:post_id])
-    like = Like.new(user:, post:)
+    @like = Like.new(user:, post:)
     respond_to do |format|
       format.html do
-        if like.save
-          like.update_likes_count
+        if @like.save
+          @like.update_likes_count
           flash[:notice] = 'Liked'
           redirect_to "/users/#{user.id}/posts/#{post.id}"
         else
           flash.now[:error] = 'Error: Like could not be saved'
-          render :new, locals: { like: }
+          # render :new, locals: { @like: }
         end
       end
     end

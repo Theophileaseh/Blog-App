@@ -7,7 +7,7 @@
 <% end %>
  
 <div class="post-container">
-  <% @posts.includes(:user).each do |post, index| %>
+  <% @posts.each do |post, index| %>
     <%= render post %>
     
 
