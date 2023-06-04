@@ -1,3 +1,4 @@
+<div class="session-registration">
 <h2>Log in</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -9,12 +10,19 @@
     <%= f.input :password,
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-  </div>
+  <% if devise_mapping.rememberable? %>
+    <div class="remember-me">
+      <%= f.check_box :remember_me, class: "remember-me-box" %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <%= f.submit "Log in", class: "submit" %>
   </div>
 <% end %>
-
+<div class="shared-links">
 <%= render "devise/shared/links" %>
+</div>
+</div>
