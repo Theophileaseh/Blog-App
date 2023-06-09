@@ -29,7 +29,9 @@
         <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-login" %>
         </div>
           <% else %>
+
           <div><%= button_to "Log in", new_user_session_path, class: "nav-login" %> </div>
+
         <% end %>
       </div>
       </div>

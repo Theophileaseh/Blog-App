@@ -1,6 +1,6 @@
 # Blog App
 
-> A blogging application that enables users to create posts, like, and comment on them. This project was build u8sing Ruby on Rails and Postgresql. 
+> A blogging application that enables users to create posts, like, and comment on them. This project was build using Ruby on Rails and Postgresql. 
 
 ## Screenshot
 | Users Page |   Users and posts page |
