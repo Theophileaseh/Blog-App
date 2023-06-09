@@ -1,45 +1,46 @@
 class PostsController < ApplicationController
   def index
-    @user = User.find(params[:user_id])
-    @posts = Post.includes(:user).where(user: params[:user_id])
+    @user = current_user
+    @posts = Post.where(user_id: current_user.id)
   end
 
   def show
-    @post = Post.includes(:user, comments: [:user]).find(params[:id])
+    @post = Post.find(params[:id])
     authorize! :read, @post
   end
 
-  def create # rubocop:disable Metrics/MethodLength
-    authorize! :read, post
-    post = params[:post]
-    user = User.find(params[:user_id])
-    post = Post.new(post.permit(:title, :text))
-    post.comments_counter = 0
-    post.likes_counter = 0
-    post.user_id = user.id
-    respond_to do |format|
-      format.html do
-        if post.save
-          post.update_posts_count
-          # success message
-          flash[:success] = 'Post saved successfully'
-          # redirect to index
-          redirect_to "/users/#{user.id}/posts"
-        else
-          # error message
-          flash.now[:error] = 'Error: Post could not be saved'
-          # render new
-          render :new, locals: { post: }
-        end
-      end
-    end
+  # GET /posts/new
+  def new
+    authorize! :manage, @post
+    @post = Post.new
+  end
 
-    def new # rubocop:disable Lint/NestedMethodDefinition
-      authorize! :manage, post
-      post = Post.new
-      respond_to do |format|
-        format.html { render :new, locals: { post: } }
+  def create
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.comments_counter = 0
+    @post.likes_counter = 0
+
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to user_posts_path, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+    private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:title, :user_id, :text, :comments_counter, :likes_counter)
   end
 end

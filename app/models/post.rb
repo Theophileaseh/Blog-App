@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
-  belongs_to :user, counter_cache: true
+  belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
-  after_save :update_posts_count
+  # after_save :update_posts_count
 
   validates :title, presence: true, length: { maximum: 250 }
   validates :comments_counter, :likes_counter, numericality: {
@@ -14,7 +14,7 @@ class Post < ApplicationRecord
     comments.includes(:user).order(created_at: :desc).limit(5)
   end
 
-  def update_posts_count
-    user.update(posts_counter: user.posts.size)
-  end
+  # def update_posts_count
+  #   user.update(posts_counter: user.posts.size)
+  # end
 end

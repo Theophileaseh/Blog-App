@@ -23,18 +23,18 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    authorize! :manage, comment
-    post = Post.find(params[:post_id])
-    comment = Comment.new(text: params[:text], user: current_user, post:)
+    # authorize! :manage, comment
+    @comment = Comment.new(comment_params)
+    @post = Post.find(params[:post_id])
     respond_to do |format|
       format.html do
-        if comment.save
-          comment.update_comments_count
+        if @comment.save
+          @comment.update_comments_count
           flash[:success] = 'New comment added'
-          redirect_to "/users/#{params[:user_id]}/posts/#{post.id}"
+          redirect_to "/users/#{params[:user_id]}/posts/#{@post.id}"
         else
           flash.now[:error] = 'Error: Comment could not be saved'
-          render :new, locals: { comment: }
+          # render :new, locals: { @comment: }
         end
       end
     end
@@ -72,6 +72,6 @@ class CommentsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def comment_params
-    params.require(:comment).permit(:user_id, :post_id, :text)
+    params.permit(:user_id, :post_id, :text)
   end
 end
