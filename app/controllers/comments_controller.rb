@@ -25,12 +25,11 @@ class CommentsController < ApplicationController
   def create
     # authorize! :manage, comment
     @comment = Comment.new(comment_params)
-    @comment.update_comments_count
     @post = Post.find(params[:post_id])
     respond_to do |format|
       format.html do
         if @comment.save
-          
+          @comment.update_comments_count
           flash[:success] = 'New comment added'
           redirect_to "/users/#{params[:user_id]}/posts/#{@post.id}"
         else
